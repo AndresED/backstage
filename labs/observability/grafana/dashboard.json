@@ -1,0 +1,15 @@
+{
+  "uid": "ms-orders",
+  "title": "ms-orders",
+  "tags": ["acme"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Prometheus up",
+      "gridPos": { "h": 4, "w": 8, "x": 0, "y": 0 },
+      "targets": [{ "expr": "up", "refId": "A" }]
+    }
+  ]
+}

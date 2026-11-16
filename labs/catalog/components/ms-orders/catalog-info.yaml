@@ -1,0 +1,32 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ms-orders
+  description: Crea y consulta pedidos. Publica order.created en Kafka.
+  tags:
+    - nestjs
+    - typescript
+  annotations:
+    github.com/project-slug: acme/ms-orders
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: ms-orders
+    backstage.io/kubernetes-namespace: acme
+  links:
+    - url: http://localhost:3001/d/ms-orders
+      title: Grafana — ms-orders
+      icon: dashboard
+spec:
+  type: service
+  lifecycle: production
+  owner: commerce-team
+  system: commerce-platform
+  providesApis:
+    - orders-api
+  consumesApis:
+    - auth-api
+    - payments-api
+  dependsOn:
+    - resource:default/acme-postgres
+    - resource:default/acme-kafka
+    - component:default/ms-auth
+    - component:default/ms-payments

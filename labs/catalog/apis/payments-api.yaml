@@ -1,0 +1,38 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-api
+  description: Contrato HTTP de cobros
+spec:
+  type: openapi
+  lifecycle: production
+  owner: payments-team
+  system: commerce-platform
+  definition: |
+    openapi: "3.0.3"
+    info:
+      title: Payments API
+      version: "1.1.0"
+    servers:
+      - url: http://ms-payments.acme.svc.cluster.local
+    paths:
+      /v1/payments:
+        post:
+          operationId: authorizePayment
+          summary: Autoriza un cobro
+          responses:
+            "202":
+              description: Cobro aceptado
+      /v1/payments/{paymentId}:
+        get:
+          operationId: getPayment
+          summary: Consulta un cobro
+          parameters:
+            - name: paymentId
+              in: path
+              required: true
+              schema:
+                type: string
+          responses:
+            "200":
+              description: Cobro

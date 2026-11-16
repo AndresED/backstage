@@ -1,0 +1,32 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: auth-api
+  description: Contrato HTTP para login y validación de tokens
+spec:
+  type: openapi
+  lifecycle: production
+  owner: platform-team
+  system: identity-platform
+  definition: |
+    openapi: "3.0.3"
+    info:
+      title: Auth API
+      version: "1.0.0"
+    servers:
+      - url: http://ms-auth.acme.svc.cluster.local
+    paths:
+      /v1/tokens:
+        post:
+          operationId: issueToken
+          summary: Emite un token para un cliente
+          responses:
+            "201":
+              description: Token emitido
+      /v1/tokens/introspect:
+        post:
+          operationId: introspectToken
+          summary: Valida un token
+          responses:
+            "200":
+              description: Token válido o inválido

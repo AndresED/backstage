@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: acme-postgres
+  description: PostgreSQL de ACME. Auth, orders y payments tienen bases distintas en el mismo motor.
+  tags:
+    - postgres
+spec:
+  type: database
+  owner: platform-team
+  system: commerce-platform

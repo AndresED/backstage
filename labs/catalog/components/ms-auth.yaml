@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ms-auth
+  description: Emite y valida tokens de los clientes ACME
+  tags:
+    - nestjs
+    - typescript
+  annotations:
+    github.com/project-slug: acme/ms-auth
+    backstage.io/kubernetes-id: ms-auth
+    backstage.io/kubernetes-namespace: acme
+  links:
+    - url: https://github.com/acme/ms-auth
+      title: Repositorio
+      icon: code
+spec:
+  type: service
+  lifecycle: production
+  owner: platform-team
+  system: identity-platform
+  providesApis:
+    - auth-api
+  dependsOn:
+    - resource:default/acme-postgres
+    - resource:default/acme-redis

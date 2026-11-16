@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: acme-services-only
+  description: Solo los tres microservicios. El catálogo completo está en all.yaml.
+spec:
+  targets:
+    - ./ms-auth.yaml
+    - ./ms-orders/catalog-info.yaml
+    - ./ms-payments.yaml

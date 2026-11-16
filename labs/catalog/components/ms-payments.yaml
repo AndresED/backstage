@@ -1,0 +1,30 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ms-payments
+  description: Autoriza cobros y publica payment.authorized
+  tags:
+    - nestjs
+    - typescript
+  annotations:
+    github.com/project-slug: acme/ms-payments
+    backstage.io/kubernetes-id: ms-payments
+    backstage.io/kubernetes-namespace: acme
+  links:
+    - url: http://localhost:3001/d/ms-payments
+      title: Grafana — ms-payments
+      icon: dashboard
+spec:
+  type: service
+  lifecycle: production
+  owner: payments-team
+  system: commerce-platform
+  providesApis:
+    - payments-api
+  consumesApis:
+    - auth-api
+  dependsOn:
+    - resource:default/acme-postgres
+    - resource:default/acme-redis
+    - resource:default/acme-kafka
+    - component:default/ms-auth

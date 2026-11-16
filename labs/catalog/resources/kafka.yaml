@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: acme-kafka
+  description: Bus de eventos. Topics order.created y payment.authorized.
+  tags:
+    - kafka
+spec:
+  type: message-broker
+  owner: platform-team
+  system: commerce-platform

@@ -1,0 +1,23 @@
+# Raíz del catálogo ACME.
+# Se registra UNA vez en app-config.yaml. Este Location apunta al resto de archivos.
+# Las rutas son relativas a este archivo.
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: acme-catalog
+  description: Catálogo de la empresa ficticia ACME
+spec:
+  targets:
+    - ./org.yaml
+    - ./domains.yaml
+    - ./systems.yaml
+    - ./components/ms-auth.yaml
+    - ./components/ms-orders/catalog-info.yaml
+    - ./components/ms-payments.yaml
+    - ./apis/auth-api.yaml
+    - ./apis/orders-api.yaml
+    - ./apis/payments-api.yaml
+    - ./resources/postgres.yaml
+    - ./resources/redis.yaml
+    - ./resources/kafka.yaml
+    - ./templates/nestjs-service/template.yaml

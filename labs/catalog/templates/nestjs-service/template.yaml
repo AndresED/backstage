@@ -1,0 +1,93 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: nestjs-microservice
+  title: NestJS Microservice
+  description: Golden path de ACME para crear un microservicio NestJS y registrarlo en el catálogo
+  tags:
+    - nestjs
+    - recommended
+    - golden-path
+  annotations:
+    backstage.io/time-saved: PT4H
+spec:
+  owner: platform-team
+  type: service
+  parameters:
+    - title: Servicio
+      required:
+        - name
+        - description
+        - owner
+      properties:
+        name:
+          title: Nombre
+          type: string
+          description: Nombre DNS del servicio. Minúsculas, números y guiones. Ejemplo ms-inventory.
+          pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
+          ui:autofocus: true
+        description:
+          title: Descripción
+          type: string
+          description: Una frase que otro equipo entienda sin abrir el repo.
+        owner:
+          title: Equipo dueño
+          type: string
+          description: Grupo del catálogo que responde por este servicio.
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+    - title: Repositorio
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Dónde se publica
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - acme
+  steps:
+    - id: fetch
+      name: Generar esqueleto
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          repoUrl: ${{ parameters.repoUrl }}
+    - id: create
+      name: Crear repositorio
+      action: github:repo:create
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        description: ${{ parameters.description }}
+        repoVisibility: private
+    - id: push
+      name: Publicar código
+      action: github:repo:push
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        defaultBranch: main
+        gitCommitMessage: 'chore: bootstrap ${{ parameters.name }} from ACME golden path'
+        gitAuthorName: ACME Backstage
+        gitAuthorEmail: backstage@acme.example
+    - id: register
+      name: Registrar en el catálogo
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.push.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
+  output:
+    links:
+      - title: Repositorio
+        url: ${{ steps.push.output.remoteUrl }}
+      - title: Abrir en el catálogo
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}

@@ -1,0 +1,18 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: identity-platform
+  description: Autenticación de clientes ACME
+spec:
+  owner: platform-team
+  domain: commerce
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: commerce-platform
+  description: Pedidos y pagos. El sistema que un developer de ACME abre primero.
+spec:
+  owner: platform-team
+  domain: commerce

@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.name }}
+  description: ${{ values.description }}
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: ${{ values.name }}
+    backstage.io/kubernetes-namespace: acme
+    backstage.io/source-template: template:default/nestjs-microservice
+  tags:
+    - nestjs
+    - typescript
+spec:
+  type: service
+  lifecycle: experimental
+  owner: ${{ values.owner }}
+  system: commerce-platform
