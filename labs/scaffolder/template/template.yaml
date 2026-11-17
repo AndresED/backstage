@@ -1,0 +1,49 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: acme-service-stamp
+  title: ACME Service Stamp
+  description: Asks for an ACME service name and writes acme.yaml. No GitHub token required.
+  tags:
+    - acme
+    - recommended
+spec:
+  owner: user:guest
+  type: service
+  parameters:
+    - title: Service
+      required:
+        - name
+        - owner
+      properties:
+        name:
+          title: Service name
+          type: string
+          description: Lowercase name, for example ms-inventory
+          ui:field: AcmeServiceName
+          ui:autofocus: true
+        owner:
+          title: Owner
+          type: string
+          description: Team that owns the service
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+  steps:
+    - id: stamp
+      name: Stamp the service
+      action: acme:service:stamp
+      input:
+        name: ${{ parameters.name }}
+        owner: ${{ parameters.owner }}
+    - id: log
+      name: Log the result
+      action: debug:log
+      input:
+        message: Stamped ${{ parameters.name }} for ${{ parameters.owner }} at ${{ steps.stamp.output.path }}
+  output:
+    links:
+      - title: Installed actions
+        url: /create/actions
+        icon: catalog

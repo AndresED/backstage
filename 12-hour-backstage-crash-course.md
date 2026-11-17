@@ -63,6 +63,16 @@ Token de GitHub en el backend: `${GITHUB_TOKEN}`. No en React. No es el login de
 
 `${{ github.sha }}` dentro del workflow se escapa como `${{ '${{ github.sha }}' }}`.
 
+## Campo y acción propios
+
+En el portal 1.56, frontend nuevo:
+
+- El campo `AcmeServiceName` es un `createFrontendModule` del plugin `scaffolder`. El template pone `ui:field: AcmeServiceName`.
+- La acción `acme:service:stamp` es un backend module. `createTemplateAction` y `scaffolder.addActions`.
+- El template `acme-service-stamp` usa los dos y escribe `acme.yaml`. No necesita token. Dry run si `supportsDryRun` está en true.
+
+El frontend clásico registra el campo de otra forma. Di cuál usa tu `App.tsx`.
+
 ## Plugin
 
 UI → `discoveryApi` + `fetchApi` → `/api/service-health/services` → backend → `http://127.0.0.1:4010`.
@@ -91,11 +101,12 @@ Dos frontends: clásico en `App.tsx`, nuevo con `PageBlueprint`. Di cuál usaste
 - "El frontend llama a la API interna con el token."
 - "Create despliega a producción."
 
-## Si solo puedes hacer tres labs
+## Si el tiempo no da
 
 1. Instalar y abrir http://localhost:3000 (`02-installation/02-installation.md`).
 2. Cargar `all.yaml` y abrir `ms-orders` (`03-software-catalog`).
 3. Abrir el template y explicar los cuatro steps (`05-software-templates`).
+4. Si la entrevista pide extensiones: campo `AcmeServiceName`, acción `acme:service:stamp` y el template que los junta (capítulos 07, 08 y 09).
 
 El plugin, si hay una hora más. La defensa de cinco minutos está en `11-final-project/interview-defense.md`.
 La simulación está en `backstage-interview.md`.

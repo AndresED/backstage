@@ -4,6 +4,8 @@ Tiempo total: 12 horas si vas de corrido. Un día si recortas los opcionales.
 Versión del curso: Backstage **1.55.3** (estable al 7 de octubre de 2026).
 Próxima línea en pre-release: 1.56.0-next. No la uses para este laboratorio.
 
+El portal instalado en esta máquina es **1.56.0** con el frontend nuevo. Los capítulos 07, 08 y 09 de templates están escritos contra esa app, no contra el pin 1.55.3.
+
 Empieza aquí. El portal que vas a construir se llama `acme-developer-portal`. La empresa es ACME. Los servicios son `ms-auth`, `ms-orders` y `ms-payments`.
 
 ## Cómo usar este curso
@@ -51,6 +53,9 @@ Si te falta tiempo, no te saltes 03, 05, 06 y `backstage-interview.md`.
 | 15 | `07-integrations/04-grafana.md` | Dashboard desde la ficha del servicio |
 | 16 | `07-integrations/03-cicd.md` | GitHub Actions en el golden path |
 | 17 | `11-final-project/implementation.md` | Portal ACME completo |
+| 18 | `05-software-templates/07-custom-fields.md` | Campo `AcmeServiceName` |
+| 19 | `05-software-templates/08-custom-actions.md` | Acción `acme:service:stamp` |
+| 20 | `05-software-templates/09-template-custom.md` | Template que usa el campo y la acción |
 
 ## Material de entrevista
 
@@ -66,6 +71,8 @@ Revisada el 7 de octubre de 2026:
 - [Standalone installation](https://backstage.io/docs/getting-started/)
 - [Descriptor format](https://backstage.io/docs/features/software-catalog/descriptor-format)
 - [Writing templates](https://backstage.io/docs/features/software-templates/writing-templates)
+- [Writing Custom Field Extensions](https://backstage.io/docs/features/software-templates/writing-custom-field-extensions) (frontend nuevo, verificado en el portal 1.56.0)
+- [Writing Custom Actions](https://backstage.io/docs/features/software-templates/writing-custom-actions)
 - [Building backend plugins](https://backstage.io/docs/backend-system/building-plugins-and-modules/index)
 - [Create a plugin (frontend legacy)](https://backstage.io/docs/plugins/create-a-plugin)
 - [New frontend system](https://backstage.io/docs/frontend-system/architecture/15-plugins)

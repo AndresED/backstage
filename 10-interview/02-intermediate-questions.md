@@ -75,7 +75,7 @@ Qué mencionar: `children: []`, ingesta desde el IdP cuando hay cientos de perso
 
 Respuesta corta: entidades Template v1beta3 con formulario, steps y output.
 
-Explicación: el formulario es JSON Schema con `OwnerPicker` y `RepoUrlPicker`.
+Explicación: el formulario es JSON Schema con `OwnerPicker` y `RepoUrlPicker`. Un campo propio, como `AcmeServiceName`, se cita con `ui:field` y se registra en el frontend.
 
 Qué mencionar: lo registra el catálogo y lo ejecuta el scaffolder.
 
@@ -85,7 +85,7 @@ Respuesta corta: el motor de esos steps sobre un workspace efímero.
 
 Explicación: `fetch:template` sustituye `${{ values }}`. Los steps de GitHub necesitan el token en el backend.
 
-Qué mencionar: dry run, y que las acciones deben poder reintentarse si activas task recovery.
+Qué mencionar: dry run, `acme:service:stamp` registrada con `scaffolderActionsExtensionPoint`, y que las acciones deben poder reintentarse si activas task recovery.
 
 ### 6. ¿Qué es un golden path?
 

@@ -16,6 +16,9 @@ Backstage 1.55.x. App de ejemplo: `acme-developer-portal`. Empresa: ACME.
 - Location: fuente. `file` en local, Git en serio.
 - Template: formulario + steps. `scaffolder.backstage.io/v1beta3`.
 - Scaffolder: ejecuta el workspace. Token en el backend.
+- Custom field (frontend nuevo, 1.56): `FormFieldBlueprint` + `createFormField` en un `createFrontendModule` con `pluginId: 'scaffolder'`. El template pone `ui:field: AcmeServiceName`.
+- Custom action: `createTemplateAction` id `acme:service:stamp`, publicada con `scaffolderActionsExtensionPoint` y `backend.add`. `supportsDryRun: true` para ver `acme.yaml` sin GitHub.
+- Template de las dos: `acme-service-stamp`. Capítulos 07, 08 y 09 de software templates.
 - Golden path: el template de Nest, con CI y registro, sin deploy y sin dominio.
 - TechDocs: MkDocs. `backstage.io/techdocs-ref: dir:.`.
 - Plugin: paquete. Backend en `/api/<id>`.

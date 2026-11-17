@@ -19,7 +19,7 @@ Un Software Template es una entidad `kind: Template` con otro `apiVersion`: `sca
 
 Tiene tres zonas:
 
-- `spec.parameters`: el formulario. Es JSON Schema más `ui:field` para widgets de Backstage (`OwnerPicker`, `RepoUrlPicker`).
+- `spec.parameters`: el formulario. Es JSON Schema más `ui:field` para widgets de Backstage (`OwnerPicker`, `RepoUrlPicker`). Un campo propio se registra aparte. Está en el capítulo 07.
 - `spec.steps`: acciones que el backend ejecuta en orden.
 - `spec.output`: links que ve el usuario al terminar (repo, entidad).
 
